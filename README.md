@@ -15,7 +15,7 @@ classification wherever the two overlap.
 
 ## Why this exists
 
-Planning agencies routinely need more than a zone's total acreage — they
+Planning agencies routinely need more than a zone's total acreage - they
 need to know how much of it is realistically developable given
 infrastructure and terrain constraints. This toolbox automates that
 classification for any zone/constraint layer combination, at any scale,
@@ -23,15 +23,15 @@ including statewide datasets with 1M+ input terrain polygons.
 
 ## What's included
 
-- **`DevelopmentIndicesToolbox.pyt`** — the ArcGIS Pro Python Toolbox.
+- **`DevelopmentIndicesToolbox.pyt`** - the ArcGIS Pro Python Toolbox.
   Contains two tools:
   - **1 - Validate Inputs**: a read-only diagnostic that checks field
     types, spatial reference agreement across layers, zone-ID
     uniqueness/range, and flags any zone geometry that's out of scale with
     the rest of the dataset. Run this first on any new dataset.
   - **2 - Calculate Dev Indices**: the production classification tool.
-    Every input — zone layer, water/floodplain/slope layers, field names,
-    even the slope classification breakpoints — is a user-supplied
+    Every input - zone layer, water/floodplain/slope layers, field names,
+    even the slope classification breakpoints - is a user-supplied
     parameter, so it adapts to any dataset rather than assuming a fixed
     schema.
 
@@ -40,7 +40,7 @@ including statewide datasets with 1M+ input terrain polygons.
 - ArcGIS Pro (developed and tested against a Standard-license install; the
   tool automatically detects and uses parallelized Pairwise geoprocessing
   tools if an Advanced license is available, and falls back to standard
-  tools otherwise — no manual configuration needed either way)
+  tools otherwise - no manual configuration needed either way)
 - No additional Python packages required beyond what ships with
   `arcgispro-py3`
 
@@ -68,7 +68,7 @@ including statewide datasets with 1M+ input terrain polygons.
    - An output geodatabase and table name
 3. The output table includes one row per zone with all 8 category
    acreages, a `TotalAcres` sum, an `UnclassifiedAcres` column (area inside
-   a zone but outside both the Slope and Flood layers' coverage — should be
+   a zone but outside both the Slope and Flood layers' coverage - should be
    near zero), an independently-computed `ZoneGeodesicAcres` for QA, and an
    `AcreageDiff` column that should be ~0 for every zone if everything
    closes correctly.
@@ -79,7 +79,7 @@ The slope/terrain input is expected to potentially be very large (SSURGO-
 scale soils data commonly exceeds a million polygons for a state). Rather
 than overlaying that layer directly against the zone layer, the tool first
 splits it into three selections by percent-slope and dissolves each down
-to a small number of large polygons *before* any overlay — this is the
+to a small number of large polygons *before* any overlay - this is the
 dominant factor in making the tool practical at statewide scale.
 
 ## Validation
@@ -87,14 +87,16 @@ dominant factor in making the tool practical at statewide scale.
 The output's built-in QA check (independently-computed zone area vs. the
 sum of the 8 category acreages) was run against a real statewide dataset
 of several thousand zones. Maximum discrepancy across all zones: a
-fraction of an acre on zones tens of thousands of acres in size — a
+fraction of an acre on zones tens of thousands of acres in size - a
 relative error on the order of 0.0004%.
 
 ## License
 
-MIT — see `LICENSE`.
+MIT - see `LICENSE`.
 
 ## More
 
 A narrative walkthrough of the design decisions behind this tool is
 available as an ArcGIS StoryMap: **[link once published]**
+
+
